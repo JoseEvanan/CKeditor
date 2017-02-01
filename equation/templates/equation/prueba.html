@@ -84,6 +84,9 @@ Here are my formulas
 
 
     $("#btn").click(function(){
+          var data = CKEDITOR.instances.editor1.getData();
+          console.log(data);
+          CKEDITOR.instances['editor1'].setData("<p><strong>negrita2</strong> <em>cursiva2</em></p>")
           var quests = [];        
           
           var i = 1;
