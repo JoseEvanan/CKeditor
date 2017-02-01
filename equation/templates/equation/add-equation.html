@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Ecuaciones</title>
+        <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">org = { mathdox:{formulaeditor:{options:{dragPalette:true, paletteShow: "none", useBar:true}}}};</script>
+        <script type="text/javascript" src="org/mathdox/formulaeditor/main.js">
+        </script>
+        <script type="text/javascript" src="http://mathdox.org/formulaeditor/org/mathdox/formulaeditor/FEConcatenation.js" charset="utf-8"></script>
+        <script type="text/javascript" src="http://mathdox.org/formulaeditor/net/youngpup/dom-drag/dom-drag.js"></script>
+        <script type="text/javascript" src="http://mathdox.org/formulaeditor/com/oreilly/javascript/tdg/make.js"></script>
+        <script type="text/javascript" src="{% static 'ckeditor/ckeditor.js' %}"></script>
+        <style type="text/css">
+        #main {
+            background-color:#FFF;
+            width:50em;
+            font-family:sans-serif;
+            }
+        .code {
+            padding-left:2em;
+            font-family:monospace;
+            }
+        .formulaeditorinput {
+            margin-right: 2em;
+        }
+        </style>
+    </head>
+
+    <body>
+        <textarea name="editor1" id="editor1" rows="10" cols="80">
+            This is my textarea to be replaced with CKEditor.
+        </textarea>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div>
+                    <label for="header">Titulo:</label>
+                    <input class="form-control" type="text" name="headerTitle">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div>
+                    <label for="equation">Ecuacion:</label>
+                    <input class="form-control" type="text" name="equation">
+                </div>
+            </div>
+        </div>
+
+        <textarea id="formula1" class="mathdoxformula" rows="10" cols="80"></textarea>
+
+        <div lang="latex">1+sin(x)^2+3</div>
+        <ul>
+        <li lang="latex">x^2+y^2+z^2</li>
+        <li>a^2+b^2</li>
+        </ul>
+        <button type="button" id="btn">click aca</button>
+    </body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        console.log('hereee');
+        $("#id").click(function() {
+            //var canvas = document.getElementById('canvas');
+            //var ctx = canvas.getContext();
+            console.log('hereee');
+        });
+    });
+</script>
+
+<script>
+    CKEDITOR.replace( 'editor1' );
+</script>

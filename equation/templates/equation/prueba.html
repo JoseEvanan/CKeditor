@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<html lang="es">
+<head>
+
+    <title>MathDox formula editor</title>
+
+	<!--    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>-->
+	<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+
+    <script src="http://www.wiris.net/demo/editor/editor"></script>
+
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+    <script type="text/javascript">
+	org = { mathdox:{formulaeditor:{options:{dragPalette:true, paletteShow: "none", useBar:true}}}};
+    </script>
+
+
+
+    <script type="text/javascript" src="http://mathdox.org/formulaeditor/org/mathdox/formulaeditor/FEConcatenation.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://mathdox.org/formulaeditor/net/youngpup/dom-drag/dom-drag.js"></script>
+
+    <script type="text/javascript" src="http://mathdox.org/formulaeditor/com/oreilly/javascript/tdg/make.js"></script>
+
+    <script type="text/javascript" src="/static/ckeditor/ckeditor.js"></script> 
+    <style type="text/css">
+
+      #main {
+        background-color:#FFF;
+        width:50em;
+        font-family:sans-serif;
+      }
+
+      .code {
+        padding-left:2em;
+        font-family:monospace;
+      }
+
+      .formulaeditorinput {
+        margin-right: 2em;
+      }
+    </style>
+
+    <script>
+    var editor;
+    window.onload = function () {
+      editor = com.wiris.jsEditor.JsEditor.newInstance({'language': 'en'});
+            editor.insertInto(document.getElementById('editorContainer'));
+    }
+    </script>
+
+</head>
+<body>
+
+
+
+<!-- <div id="editorContainer"></div> -->
+<!--
+<div>
+  <input type="text" name="inputText" spellcheck="true">
+</div>
+-->
+<textarea name="editor1" id="editor1" rows="10" cols="80">
+</textarea>
+Here are my formulas
+
+
+
+
+<button type="button" id="btn">click aca</button>
+</body>
+
+<script>
+    CKEDITOR.replace( 'editor1', {
+    filebrowserBrowseUrl: '/equation/browser',
+    filebrowserUploadUrl: '/equation/upload'
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+
+    $("#btn").click(function(){
+          var quests = [];        
+          
+          var i = 1;
+
+          var text = editor.getMathML();
+
+          $.ajax({
+            type: "GET",
+            url: "/equation/data/",
+            data: {'head': 'heereee', 'equation': text},
+            success: function(response){
+              console.log('Heeeeeerreeeeee');
+              console.log(response)
+            },
+          });
+          
+    });
+  });
+  
+
+  /*    $("#btn").click(function() {
+      var canvas = document.getElementsByClassName('mathdoxformula');
+      var ctx = canvas[0].getContext('2d');
+      //var texteq = $("#formula1").val();
+      //console.log(texteq);
+
+      var data = CKEDITOR.instances.editor1.getData();
+      //console.log(data);
+
+      var texteq = $("#editorContainer").val();
+      console.log(editor.getMathML())
+      //alert(editor.getAccessibleContextText() );
+      //console.log($("inputText").val());
+
+    });*/
+
+</script>
+
+
+
+</html>
+
